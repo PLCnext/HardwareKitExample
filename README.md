@@ -91,13 +91,29 @@ A program that reads the array can detect the arrival of new data by checking th
 ## FAQ
 
 Q: Which PLCnext Technology controllers can the AXC F XT KIT be used with?
+
 A: Only those controllers with left-side PCI express capability - currently  AXC F 2152 and 3152 devices.
 
 Q: Can I use an AXC F 2152 for the above example?
+
 A: Perhaps. Because of the different architecture it may be more difficult to get this example working on an AXC F 2152.
 
 Q: Will other USB devices work with this setup?
+
 A: Yes. For example it is possible to plug in a USB stick (thumb-drive) and mount the file system on the PLCnext Control device.
 
 Q: Will it be easy to get other Mini PCIe cards working?
+
 A: Perhaps. Perhaps not. In this case the `libusb` driver was already installed on the controller and included in the SDK. Other PCIe devices will probably need to have a separate driver installed.
+
+Q: Can I buy the complete assembly shown in this example from Phoenix Contact?
+
+A: No (sorry).
+
+Q: Can I use this example in a production application?
+
+A: There are many other steps that would need to be completed before an assembly like this could be used in a production application. For example, the complete left-side hardware module would need to be certified to the required standards (e.g. CE).
+
+Q: Will Phoenix Contact help me to get my own project working?
+
+A: Please get in touch with the Phoenix Contact subsidiary in your country to discuss specific projects.
