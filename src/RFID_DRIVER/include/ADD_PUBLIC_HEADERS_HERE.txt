@@ -1,0 +1,3 @@
+﻿This directory will automatically be deployed to the CMake package. Therefore
+all headers that need to be visible to the user of the library need to be
+placed here.

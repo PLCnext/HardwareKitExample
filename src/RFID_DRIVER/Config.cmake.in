@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+include( "@PACKAGE_LIB_INSTALL_DIR@/RFID_DRIVER-targets.cmake" )
+
+set_and_check(RFID_DRIVER_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+check_required_components(RFID_DRIVER)
