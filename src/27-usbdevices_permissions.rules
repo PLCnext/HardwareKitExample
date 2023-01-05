@@ -1,0 +1,2 @@
+SUBSYSTEM=="usb",OWNER="plcnext_firmware",MODE="0660"
+ATTRS{vendor}=="0x16c0",ATTRS{device}=="0x27db",OWNER="plcnext_firmware", MODE="0660"

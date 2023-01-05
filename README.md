@@ -28,10 +28,11 @@ It is assumed that the user is familiar with developing Programs and Components 
 |Description | Value |
 |------------ |-----------|
 |Created | 11.11.2022 |
-|Last modified | 11.11.2022 |
-|Controller | AXC F 3152 with firmware 2022.9 |
-|IDE | Visual Studio 2019 (any edition) |
-|PLCnext CLI | 22.6.0.1153 (22.6.0.1153) with the Visual Studio add-in installed |
+|Last modified | 05.01.2023 |
+|Controller | AXC F 3152 with firmware 2022.0 or later |
+|Build machine OS | Linux |
+|PLCnext CLI | 22.6.0.1153 (22.6.0.1153) or later |
+|SDK | AXC F 3152 version 2022.0 |
 
 ## Hardware components
 
@@ -54,15 +55,17 @@ It is assumed that the user is familiar with developing Programs and Components 
 
 1. Apply power to the assembly.
 
+1. Mount the RFID reader, either temporarily or persistently, using the instructions in the next section.
+
 1. Check that the RFID reader has been detected by the operating system, using the `lsusb` command on the PLC.
 
-1. Clone this repository and open the Visual Studio solution.
+1. Clone this repository to the build machine.
 
-1. Build the solution to generate a PLCnext Engineer library.
+1. Change to the `src` directory and execute the script `build-and-deploy.sh` to generate a PLCnext Engineer library.
 
-1. In PLCnext Engineer, create a new project for the AXC F 3152 v 2022.9.
+1. In PLCnext Engineer, create a new project for the AXC F 3152 v 2022.0.
 
-1. Add the library to the PLCnext Engineer project.
+1. Add the PLCnext Engineer library to the PLCnext Engineer project.
 
 1. Create an instance of the Program in a cyclic task.
 
@@ -76,15 +79,28 @@ It is assumed that the user is familiar with developing Programs and Components 
 
 You can now use the data from the RFID reader in your own PLCnext Engineer application.
 
+## Mounting the RFID reader
+
+By default, USB devices are not available to the `plcnext_firmware` user.
+
+For a temporary solution (not persistent), change the device permissions using the "root" user:
+
+```bash
+chown plcnext_firmware:plcnext /dev/input/event/* 
+chmod 660 /dev/input/event/*
+```
+
+For a persistent solution across reboots and remounts, the [udev](https://wiki.archlinux.org/title/udev) definitions must be adapted by copying the [rules file (src/27-usbdevices_permissions.rules) from this repository to the '/etc/udev/rules' directory on the PLCnext Control device.
+
 ## C++ project description
 
-The Visual Studio solution includes a C++ project that contains one PLM component and one Program. The only purpose of the Program is to force the creation a PLM component instance.
+The C++ project contains one PLM component and one Program. The only purpose of the Program is to force the creation a PLM component instance.
 
-The PLM component uses the `libusb` library, which is included in the SDK for the AXC F 3152.
+The PLM component uses the `libusb` library, which is included in the SDK for the AXC F 3152, along with the [hidapi](https://github.com/libusb/hidapi) library.
 
 The PLM component instance creates a Worker Thread that is executed every second.
 
-On each execution of the worker thread, the *** method of the `libusb` library is used to check for new data from the RFID reader. When new data is detected, the new tag data is added to an array of strings. The array has the capacity for the five most recent strings and a null "terminator".
+On each execution of the worker thread, a check is made for new data from the RFID reader. When new data is detected, the new tag data is added to an array of strings. The array has the capacity for the five most recent strings and a null "terminator".
 
 A program that reads the array can detect the arrival of new data by checking the location of the null entry in the array. When the location of the null entry changes, then new data has been received.
 

@@ -1,0 +1,9 @@
++ Copy eyerthing under the 'bin' directory of this project to the 'external' 
+  directory of the consuming project
++ In the CMakeLists.txt of the consuming project add the following line before
+  the 'target_link_libraries' call
+    find_package(RFID_DRIVER REQUIRED)
++ Add in the CMakeLists.txt of the consuming project to the 
+  'target_link_libraries' call the previousely found package 'RFID_DRIVER'
++ Use public headers of this project by including them in the consuming project
+  e.g. '#include "RFID_DRIVER/RFID_DRIVERClass.hpp"'
