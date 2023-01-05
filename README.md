@@ -12,6 +12,7 @@ Third-party hardware used in this example is not endorsed or supported by Phoeni
 - [Guide details](#guide-details)
 - [Hardware components](#hardware-components)
 - [Procedure](#procedure)
+- [Mounting the RFID reader](#mounting-the-rfid-reader)
 - [C++ project description](#c-project-description)
 - [FAQ](#faq)
 
