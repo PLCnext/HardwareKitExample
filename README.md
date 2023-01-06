@@ -31,7 +31,6 @@ It is assumed that the user is familiar with developing Programs and Components 
 |Created | 11.11.2022 |
 |Last modified | 05.01.2023 |
 |Controller | AXC F 3152 with firmware 2022.0 or later |
-|Build machine OS | Linux |
 |PLCnext CLI | 22.6.0.1153 (22.6.0.1153) or later |
 |SDK | AXC F 3152 version 2022.0 |
 
@@ -62,7 +61,7 @@ It is assumed that the user is familiar with developing Programs and Components 
 
 1. Clone this repository to the build machine.
 
-1. Change to the `src` directory and execute the script `build-and-deploy.sh` to generate a PLCnext Engineer library.
+1. Change to the `src` directory and execute the bash script `build-and-deploy.sh` to generate a PLCnext Engineer library.
 
 1. In PLCnext Engineer, create a new project for the AXC F 3152 v 2022.0.
 
