@@ -92,6 +92,10 @@ chmod 660 /dev/input/event/*
 
 For a persistent solution across reboots and remounts, the [udev](https://wiki.archlinux.org/title/udev) definitions must be adapted by copying the [rules file](src/27-usbdevices_permissions.rules) from this repository to the `/etc/udev/rules` directory on the PLCnext Control device.
 
+NOTE: If the above procedure does not work, even when using an identical RFID reader, please see this issue:
+
+https://github.com/PLCnext/HardwareKitExample/issues/2
+
 ## C++ project description
 
 The C++ project contains one PLM component and one Program. The only purpose of the Program is to force the creation a PLM component instance.
